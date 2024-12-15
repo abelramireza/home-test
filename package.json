@@ -4,9 +4,9 @@
   "description": "## Must have before start",
   "main": "index.js",
   "scripts": {
-    "default:run": "npx playwright test",
-    "chrome:run": "npx playwright test --project='Google Chrome'",
-    "firefox:run": "npx playwright test --project='firefox'"
+    "default:run": "npx playwright test --headed",
+    "chrome:run": "npx playwright test --project='Google Chrome --headed'",
+    "firefox:run": "npx playwright test --project='firefox --headed'"
   },
   "keywords": [],
   "author": "",

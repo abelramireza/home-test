@@ -27,7 +27,7 @@ module.exports = defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: "http://localhost:3100",
-    headless: false, // For debugging, use headless: true for CI
+    headless: true, // For debugging, use headless: true for CI
     containerName: "demo-app-container", // Name of the Docker container
     dockerImage: "automaticbytes/demo-app", // Docker image name
     containerPort: 3100, // Port to map the app
