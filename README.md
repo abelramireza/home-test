@@ -2,11 +2,24 @@
 
 ## Must have before start
 
-- Git
-- Docker
+- **Git**: To clone the repository.
+- **Docker**: To run the application under test.
+- **Node.js**: To execute Playwright tests.
 
-### Steps
+## Steps to Run the Project
 
+### 1. Clone the Repository
+```bash
+git clone https://github.com/abelramireza/home-test.git
+cd home-test
+```
+### 2. Install Dependencies 
+```bash
+npm install
+npx playwright install #"If Playwright browsers are not installed automatically, you can install them manually:"
+```
+
+### 3. Pull Docker Image
 1. Pull the docker image containing the web app
 `docker pull automaticbytes/demo-app`
 
@@ -16,29 +29,20 @@
 3. Verify the app is shown in below url and set it as the base url for the tests.
 `http://localhost:3100`
 
-4. Fork this repository and develop your tests following bellow guidances/requisites.
-
-5. When finished open a Pull Request for Code Review.
-
-### General requisites for submission
-
-1. Programming languages
-   - Java
-   - Javascript
-
-2. Drivers
-   - Playwright
-   - Selenium
-
-3. Browsers
-	- Chrome (preferred)
-	- Firefox
-
-### General test requisites
-- All tests should provide a setup and tear down mechanism that opens and closes the browser.
-- All tests should run successfully either from IDE or command line.
-- Instructions to build and run the code and tests submitted must be provided.
-- Submitted code implementing a Page Object Model will be taken in high consideration.
+### 4. Run the Tests
+```bash
+npx playwright test
+```
+Run tests in a specific browser (e.g., Chrome or Firefox):
+```bash
+npm run chrome:run
+npm run firefox:run
+npm run default:run #To execute in all default browsers in the playwright.config.js
+```
+After running the tests, Playwright generates a detailed report. Open it using:
+```bash
+npx playwright show-report
+```
 
 ### Tests Scenarios
 1.  Login Success
@@ -91,3 +95,24 @@
 	- Navigate to http://localhost:3100/search
 	- Leave search box empty and submit the search
 	- Assert that "Please provide a search word." message is shown.
+
+### Key Features
+1.	Automated Docker Management:
+	•	The Docker container is started in globalSetup.js and stopped in globalTeardown.js. No manual intervention is required.
+2.	Cross-Browser Testing:
+	•	Tests run in both Chrome and Firefox browsers by default.
+3.	Full Page Object Model:
+	•	Tests are organized using a Page Object Model for better readability and maintainability
+
+
+### Key Features
+
+1.	Environment Setup:
+	•	The project uses globalSetup.js to start the Docker container before running tests.
+	•	The container is automatically stopped after tests via globalTeardown.js.
+2.	Custom Configurations:
+	•	The playwright.config.js file includes settings for parallel test execution, browser-specific configurations, and headless testing modes.
+3.	Extensibility:
+	•	New test cases can be easily added by following the Page Object Model and reusing common components.
+4.	Parallel Execution:
+	•	All tests are run twice (once for each browser: Chrome and Firefox) for comprehensive cross-browser validation.
