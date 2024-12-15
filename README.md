@@ -105,7 +105,7 @@ npx playwright show-report
 	•	Tests are organized using a Page Object Model for better readability and maintainability
 
 
-### Key Features
+### Additonal Notes
 
 1.	Environment Setup:
 	•	The project uses globalSetup.js to start the Docker container before running tests.
@@ -116,3 +116,41 @@ npx playwright show-report
 	•	New test cases can be easily added by following the Page Object Model and reusing common components.
 4.	Parallel Execution:
 	•	All tests are run twice (once for each browser: Chrome and Firefox) for comprehensive cross-browser validation.
+
+   ## GitHub Actions Workflow
+
+The repository includes a GitHub Actions workflow (`.github/workflows/playwright.yml`) to automate the execution of Playwright tests in a CI/CD pipeline. Below is an overview of how the workflow is set up:
+
+### Workflow Highlights
+
+1. **Docker Installation and Setup**:
+   - The workflow installs Docker and pulls the `automaticbytes/demo-app` Docker image.
+   - This image is used as the backend for the tests.
+
+2. **Automated Browser Installation**:
+   - Playwright browsers are installed using `npx playwright install --with-deps`.
+
+3. **Test Execution**:
+   - Playwright tests are executed in **headless mode** by default to ensure compatibility with CI environments without a display server.
+   - If you want to run tests in headed mode (with a UI), the workflow supports using `xvfb-run` to create a virtual display environment.
+
+4. **Test Report Artifacts**:
+   - After the tests complete, the Playwright HTML report is uploaded as an artifact for review.
+
+### Running Headless or Headed Browsers in CI
+
+- By default, the tests run in **headless mode** for simplicity and speed. This is configured in the `playwright.config.js` file:
+
+```javascript
+use: {
+  headless: true, // Ensure tests run in headless mode in CI
+  baseURL: 'http://localhost:3100',
+  screenshot: 'on',
+  trace: 'on-first-retry',
+},
+```
+- To enable headed mode (if required), the workflow uses xvfb-run:
+```yaml
+- name: Run Playwright Tests
+  run: xvfb-run --auto-servernum -- npx playwright test
+  ```
