@@ -48,7 +48,7 @@ jobs:
 
     # Run Playwright tests
     - name: Run Playwright Tests
-      run: npx playwright test
+      run: xvfb-run --auto-servernum -- npx playwright test
 
     # Upload Playwright report as an artifact
     - uses: actions/upload-artifact@v4
