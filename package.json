@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "default:run": "npx playwright test --headed",
-    "chrome:run": "npx playwright test --project='Google Chrome --headed'",
-    "firefox:run": "npx playwright test --project='firefox --headed'"
+    "chrome:run": "npx playwright test --project='Google Chrome' --headed",
+    "firefox:run": "npx playwright test --project='firefox' --headed"
   },
   "keywords": [],
   "author": "",
