@@ -21,11 +21,13 @@ npx playwright install #"If Playwright browsers are not installed automatically,
 
 ### 3. Pull Docker Image
 1. Pull the docker image containing the web app
-`docker pull automaticbytes/demo-app`
-
-2. Run the image
-`docker run -p 3100:3100 automaticbytes/demo-app`
-
+```bash
+docker pull automaticbytes/demo-app`
+```
+2. Run the image (in case you want to test manually, playwright tests will do it automatically,)
+```bash
+docker run -p 3100:3100 automaticbytes/demo-app`
+```
 3. Verify the app is shown in below url and set it as the base url for the tests.
 `http://localhost:3100`
 
